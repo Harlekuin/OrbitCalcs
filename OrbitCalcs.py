@@ -19,3 +19,9 @@ CURRENT_HEIGHT = AVERAGE_HEIGHT = 8400 * u.kilometer
 V = ((G * M) * ((2/CURRENT_HEIGHT) - (1/AVERAGE_HEIGHT)))**.5
 
 print(V.to('m/s'))
+
+
+#delta v given by the Tsiolkovsky rocket equation
+# dV = Exhaust Velocity * ln(total mass with fuel / total mass without fuel)
+# i.e. 20% fuel with exhaust velocity of 2100 m/s
+# dV = 2100 * ln(1/.8)m/s = 460 m/s
