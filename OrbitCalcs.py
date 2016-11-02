@@ -13,7 +13,7 @@ def OrbitalVelocity(Current_Height, Average_Height, M, G): #returns orbital velo
     if type(Current_Height) is float:
         Current_Height = Current_Height * u.meter
     if type(Average_Height) is float:
-        Current_Height = Current_Height * u.meter
+        Average_Height = Average_Height * u.meter
     
     V = ((G * M) * ((2/CURRENT_HEIGHT) - (1/AVERAGE_HEIGHT)))**.5
     return V.to('m/s')
@@ -43,13 +43,27 @@ class CelestialBody(object):
         self.Solar_Day = Solar_Day * u.second
         self.Standard_Gravitational_Parameter = Standard_Gravitational_Parameter * u.meter * u.meter * u.meter / u.second / u.second
 
-
+    def OrbitalVelocity(self, Current_Height, Average_Height):
+        #V^2 = GM(2/r - 1/a)
+        #if type(Current_Height) is float:
+        #   Current_Height = Current_Height * u.meter + self.Equatorial_radius
+        #if type(Average_Height) is float:
+        #    Current_Height = Current_Height * u.meter + self.Equatorial_radius
+        
+        Current_Height = Current_Height + self.Equatorial_radius
+        Average_Height = Average_Height + self.Equatorial_radius
+        
+        V = (self.Standard_Gravitational_Parameter * ((2/Current_Height) - (1/Average_Height)))**.5
+        return V.to('m/s')
+        
+        
 KSP_CelestialBodies = {}
 
 KSP_CelestialBodies['Kerbin'] = CelestialBody('Kerbin')
 KSP_CelestialBodies.get('Kerbin').InitiateValues(5.2897088e22, 6e5, 9.81, 2.16e8, 3.5303940e12)
 
 print(KSP_CelestialBodies.get('Kerbin').Standard_Gravitational_Parameter)
+print(KSP_CelestialBodies.get('Kerbin').OrbitalVelocity(1.2e5 * u.meter, 1.2e5 * u.meter))
 exit()
 
 
