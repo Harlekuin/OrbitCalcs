@@ -26,7 +26,34 @@ def DeltaV(ExhaustVelocity, FuelMassperc): # returns delta v
     return ExhaustVelocity * np.log(1/(1 - FuelMassperc))
     
 
+class CelestialBody(object):
     
+    def __init__(self, name):
+        self.name = name
+        self.Mass = 0e0 * u.kg
+        self.Equatorial_radius = 0e0 * u.meter
+        self.surface_gravity = 0e0 * u.meter / u.second / u.second
+        self.Solar_Day = 0e0 * u.second
+        self.Standard_Gravitational_Parameter = 0e0 * u.meter * u.meter * u.meter / u.second / u.second    
+    
+    def InitiateValues(self, Mass, Equatorial_radius, surface_gravity, Solar_Day, Standard_Gravitational_Parameter):
+        self.Mass = Mass * u.kg
+        self.Equatorial_radius = Equatorial_radius * u.meter
+        self.surface_gravity = surface_gravity * u.meter / u.second / u.second
+        self.Solar_Day = Solar_Day * u.second
+        self.Standard_Gravitational_Parameter = Standard_Gravitational_Parameter * u.meter * u.meter * u.meter / u.second / u.second
+
+
+KSP_CelestialBodies = {}
+
+KSP_CelestialBodies['Kerbin'] = CelestialBody('Kerbin')
+KSP_CelestialBodies.get('Kerbin').InitiateValues(5.2897088e22, 6e5, 9.81, 2.16e8, 3.5303940e12)
+
+print(KSP_CelestialBodies.get('Kerbin').Standard_Gravitational_Parameter)
+exit()
+
+
+        
 CURRENT_HEIGHT = AVERAGE_HEIGHT = 160 * u.kilometer + RADIUS_OF_EARTH
 print(OrbitalVelocity(CURRENT_HEIGHT, CURRENT_HEIGHT, M, G))
 
