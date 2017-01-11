@@ -62,9 +62,9 @@ KSP_CelestialBodies = {}
 KSP_CelestialBodies['Kerbin'] = CelestialBody('Kerbin')
 KSP_CelestialBodies.get('Kerbin').InitiateValues(5.2897088e22, 6e5, 9.81, 2.16e8, 3.5303940e12)
 
-print(KSP_CelestialBodies.get('Kerbin').Standard_Gravitational_Parameter)
-print(KSP_CelestialBodies.get('Kerbin').OrbitalVelocity(1.2e5 * u.meter, 1.2e5 * u.meter))
-print(KSP_CelestialBodies.get('Kerbin').OrbitalVelocity(7e4 * u.meter, 7e4 * u.meter))
+print('SGP of Kerbin: %s' % KSP_CelestialBodies.get('Kerbin').Standard_Gravitational_Parameter)
+print('OV at 1.2e5m circular orbit of Kerbin: %s' % KSP_CelestialBodies.get('Kerbin').OrbitalVelocity(1.2e5 * u.meter, 1.2e5 * u.meter))
+print('OV at 7e4m circular orbit of Kerbin: %s' % KSP_CelestialBodies.get('Kerbin').OrbitalVelocity(7e4 * u.meter, 7e4 * u.meter))
 exit()
 
 
